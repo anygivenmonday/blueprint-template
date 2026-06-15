@@ -1,0 +1,56 @@
+# Test workflow — runs whatever tests this blueprint ships.
+#
+# Placeholder. Uncomment the runtime block matching this blueprint's
+# stack when a reference implementation lands. The meta-site
+# (anygivenmonday) reads this workflow's latest run status via the
+# GitHub Status API and surfaces it on the blueprint detail page
+# ("CI: ✓ passing" / "CI: ✗ failing").
+#
+# Keep this file present even for description-only blueprints — the
+# `on: workflow_dispatch` trigger makes the workflow appear in the
+# Actions tab so the meta-site has a stable target to query.
+
+name: Tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # ─── Python ──────────────────────────────────────────────────
+      # - uses: actions/setup-python@v5
+      #   with:
+      #     python-version: "3.12"
+      #     cache: pip
+      # - run: pip install -r requirements/dev.txt
+      # - run: pytest
+
+      # ─── Node ────────────────────────────────────────────────────
+      # - uses: actions/setup-node@v4
+      #   with:
+      #     node-version: "20"
+      #     cache: npm
+      # - run: npm ci
+      # - run: npm test
+
+      # ─── Rust ────────────────────────────────────────────────────
+      # - uses: dtolnay/rust-toolchain@stable
+      # - run: cargo test --all-features
+
+      - name: No tests configured (description-only blueprint)
+        run: |
+          echo "This blueprint has no reference implementation yet."
+          echo "Uncomment the runtime block in .github/workflows/test.yml"
+          echo "when code lands. The meta-site treats a passing 'no-op'"
+          echo "as healthy."

@@ -1,0 +1,58 @@
+# Audit workflow — periodic security + dependency audit.
+#
+# Placeholder. Uncomment the relevant block when the blueprint
+# carries code. For description-only blueprints, this workflow is
+# a no-op and reports green on the daily schedule — useful as a
+# "the repo is healthy and visible" signal to the meta-site.
+#
+# Scope (when implemented):
+#  - Dependency vulnerability scan (pip-audit / npm audit / cargo audit)
+#  - Static analysis where free + meaningful (ruff, eslint, clippy)
+#  - Secret scanning (gitleaks)
+#
+# Dependabot / Renovate handle dep-update PRs separately — this
+# workflow only REPORTS findings, it doesn't open PRs.
+
+name: Audit
+
+on:
+  schedule:
+    - cron: "0 5 * * 1"   # weekly, Mondays at 05:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # ─── Python ──────────────────────────────────────────────────
+      # - uses: actions/setup-python@v5
+      #   with:
+      #     python-version: "3.12"
+      # - run: pip install pip-audit
+      # - run: pip-audit -r requirements/base.txt
+
+      # ─── Node ────────────────────────────────────────────────────
+      # - uses: actions/setup-node@v4
+      #   with:
+      #     node-version: "20"
+      # - run: npm audit --omit=dev
+
+      # ─── Rust ────────────────────────────────────────────────────
+      # - uses: dtolnay/rust-toolchain@stable
+      # - run: cargo install cargo-audit
+      # - run: cargo audit
+
+      # ─── Secret scanning ─────────────────────────────────────────
+      # - uses: gitleaks/gitleaks-action@v2
+
+      - name: No audit targets configured
+        run: |
+          echo "This blueprint has no runnable code to audit yet."
+          echo "Uncomment the relevant block in"
+          echo ".github/workflows/audit.yml when code lands."

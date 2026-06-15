@@ -1,0 +1,77 @@
+# Blueprint template .gitignore — covers the common stacks blueprints
+# may use. Trim or extend per-blueprint when a reference implementation
+# lands. Conservative by design: better to ignore a few unused patterns
+# than to commit a build artifact.
+
+# ─── Local environment ──────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+*.local
+
+# ─── Editors / OS ───────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ─── Python ─────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+.venv/
+venv/
+env/
+build/
+dist/
+*.egg
+
+# ─── Node / JavaScript ──────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.next/
+.nuxt/
+.parcel-cache/
+out/
+
+# ─── Rust ───────────────────────────────────────────────────────────
+target/
+Cargo.lock         # leave this commented if the crate is a binary; binaries should commit Cargo.lock
+# !Cargo.lock
+
+# ─── Go ─────────────────────────────────────────────────────────────
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# ─── Terraform ──────────────────────────────────────────────────────
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+.terraform.lock.hcl
+
+# ─── Docker ─────────────────────────────────────────────────────────
+*.pid
+docker-compose.override.yml
+
+# ─── Logs / temp ────────────────────────────────────────────────────
+*.log
+tmp/
+temp/
