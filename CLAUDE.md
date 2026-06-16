@@ -36,16 +36,39 @@ session in a blueprint repo.
 
 ## File conventions
 
-| File                       | Required? | What it renders to on the detail page         |
-| -------------------------- | --------- | --------------------------------------------- |
+| File                       | Required? | What it renders to on the detail page          |
+| -------------------------- | --------- | ---------------------------------------------- |
 | `README.md`                | yes       | "About" section                                |
+| `stack.yml`                | yes       | The picture cloud (technology logo grid)       |
 | `docs/architecture.md`     | optional  | "Architecture" section (skipped if missing)    |
 | `docs/setup.md`            | optional  | "Setup" section (skipped if missing)           |
 | `docs/deploy.md`           | optional  | "Deploy" section (skipped if missing)          |
 
-If a file isn't there, the corresponding section doesn't render.
-That's fine — description-only blueprints often only ship a
-README.
+If a markdown file isn't there, the corresponding section doesn't
+render. That's fine — description-only blueprints often only ship
+a README + stack.yml.
+
+## stack.yml — the picture cloud
+
+`stack.yml` lists which technologies appear in the blueprint's
+picture cloud, in display order. It is the source of truth for the
+*selection*; the *logos* live in the central AnyGivenMonday
+technology catalog (shared, curated once, CDN-served).
+
+Rules:
+
+- Most entries are a bare lowercase-kebab slug (`python`,
+  `apache-kafka`, `github-actions`).
+- A slug is resolved against the central catalog for its logo +
+  canonical name. A slug not in the catalog renders name-only and
+  is flagged for the curator/agent to add a logo.
+- Use the expanded form (`slug` + `name` + `icon_url`) only to
+  override a display name or supply a one-off icon.
+- Order matters — list the defining technologies first.
+
+When helping the user, suggest realistic slugs that are likely to
+exist in the catalog (common tools), and call out any niche
+technology that will probably need a logo added centrally.
 
 ## Markdown rules
 

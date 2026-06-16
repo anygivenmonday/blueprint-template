@@ -43,6 +43,7 @@ For a code-bearing blueprint:
 ```text
 .
 ├── README.md              ← this file
+├── stack.yml              ← picture cloud (which technologies, in order)
 ├── docs/
 │   ├── architecture.md    ← rendered as the "Architecture" section
 │   ├── setup.md           ← rendered as the "Setup" section
@@ -57,6 +58,7 @@ For a description-only blueprint, simplify to:
 ```text
 .
 ├── README.md
+├── stack.yml
 └── docs/
     ├── architecture.md
     └── setup.md           ← not always populated

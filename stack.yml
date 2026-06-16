@@ -1,0 +1,33 @@
+# stack.yml — picture cloud definition for this blueprint.
+#
+# Lists the technologies shown in the picture cloud on the
+# AnyGivenMonday blueprint detail page, in display order. This file
+# is the source of truth for WHICH technologies the blueprint uses;
+# the LOGOS themselves live in the central AnyGivenMonday technology
+# catalog (shared across blueprints, curated once, served from a CDN).
+#
+# How resolution works:
+#   - Each bare slug is looked up in the central catalog by `slug`.
+#     The catalog provides the canonical name + logo.
+#   - A slug not yet in the catalog renders as a name-only chip and
+#     is surfaced to the curator/agent to add a logo for it.
+#   - The expanded form (slug + name + icon_url) overrides the name
+#     and/or supplies a one-off icon without touching the catalog.
+#
+# Order matters: technologies render in the order listed here. Put
+# the defining technologies of the stack first.
+#
+# Keep slugs lowercase-kebab (python, apache-kafka, github-actions).
+
+technologies:
+  - python
+  - fastapi
+  - postgresql
+  - docker
+
+  # Expanded form — uncomment and adapt for a name override or a
+  # one-off icon not yet in the central catalog:
+  #
+  # - slug: my-niche-tool
+  #   name: My Niche Tool
+  #   icon_url: https://example.com/logo.svg
